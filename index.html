@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeCompanion — Live Longer. One Habit at a Time.</title>
+  <meta name="description" content="Your daily companion for health, longevity, and inner calm. Track habits, meditate, move, and watch your life expectancy grow." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & tokens ───────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0D1117;
+      --surface:     #161B22;
+      --surface2:    #1C2330;
+      --border:      rgba(255,255,255,0.08);
+      --teal:        #4DB6AC;
+      --teal-light:  #80CBC4;
+      --green:       #4CAF50;
+      --green-deep:  #2E7D32;
+      --amber:       #FFB74D;
+      --text:        #F0F6FC;
+      --text-muted:  #8B949E;
+      --text-dim:    #484F58;
+      --radius:      16px;
+      --radius-sm:   10px;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Utility ──────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 100px 0; }
+    .section--alt { background: var(--surface); }
+
+    .label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    h2.headline {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .subtext {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* Fade-in on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── Navigation ───────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: #0D1117;
+    }
+    .btn-primary:hover {
+      background: var(--teal-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(77,182,172,0.35);
+      text-decoration: none;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(77,182,172,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(76,175,80,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-cta  { justify-content: center; }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(77,182,172,0.1);
+      border: 1px solid rgba(77,182,172,0.25);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--teal), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 460px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 52px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 800px) { .hero-stats { justify-content: center; } }
+    .stat-item { text-align: left; }
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── Phone mockup ─────────────────────────────────────────────────────── */
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .phone-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -30px;
+      background: radial-gradient(ellipse at center, rgba(77,182,172,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.06); }
+    }
+
+    .phone {
+      width: 260px;
+      background: #1C2330;
+      border-radius: 38px;
+      padding: 14px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 60px rgba(77,182,172,0.12);
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+    .phone-screen {
+      background: #0D1117;
+      border-radius: 28px;
+      padding: 18px 14px;
+      font-size: 8px;
+      overflow: hidden;
+    }
+    .phone-notch {
+      width: 60px; height: 8px;
+      background: #1C2330;
+      border-radius: 4px;
+      margin: 0 auto 16px;
+    }
+
+    /* Mini app UI inside phone */
+    .p-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .p-age {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .p-age-label { font-size: 7px; color: var(--text-muted); }
+    .p-longevity {
+      text-align: right;
+      font-size: 7px;
+      color: var(--text-muted);
+    }
+    .p-longevity strong { color: var(--green); font-size: 9px; display: block; }
+
+    /* Mini ribbon */
+    .p-ribbon {
+      background: #1C2330;
+      border-radius: 8px;
+      padding: 8px 8px 6px;
+      margin-bottom: 8px;
+    }
+    .p-ribbon-label { font-size: 6px; color: var(--text-dim); margin-bottom: 4px; }
+    .p-ribbon-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 10px;
+    }
+    .p-bar {
+      flex: 1;
+      border-radius: 2px;
+      transition: height 1s ease;
+    }
+
+    /* Mini timeline */
+    .p-timeline {
+      background: #1C2330;
+      border-radius: 8px;
+      padding: 8px;
+      margin-bottom: 8px;
+    }
+    .p-tl-label { font-size: 6px; color: var(--text-dim); margin-bottom: 5px; }
+    .p-tl-track {
+      height: 4px;
+      background: #0D1117;
+      border-radius: 2px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+    .p-tl-dot {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      top: -2px;
+      font-size: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mini tiles */
+    .p-tiles {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+    }
+    .p-tile {
+      background: #1C2330;
+      border-radius: 5px;
+      padding: 5px 2px;
+      text-align: center;
+      font-size: 10px;
+    }
+    .p-tile-label { font-size: 5px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── Ribbon section ───────────────────────────────────────────────────── */
+    #ribbon-section {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+    .ribbon-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .ribbon-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Large demo ribbon */
+    .ribbon-demo {
+      background: var(--surface2);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+    .ribbon-demo-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .ribbon-bars {
+      display: flex;
+      gap: 5px;
+      align-items: flex-end;
+      height: 48px;
+      margin-bottom: 8px;
+    }
+    .ribbon-bar {
+      flex: 1;
+      border-radius: 6px;
+      transition: height 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 1.2s ease;
+      height: 8px;
+      background: #2A3040;
+    }
+    .ribbon-bar.animated { /* set by JS */ }
+    .ribbon-days {
+      display: flex;
+      gap: 5px;
+    }
+    .ribbon-day {
+      flex: 1;
+      text-align: center;
+      font-size: 10px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    .ribbon-day.today { color: var(--teal); font-weight: 700; }
+
+    /* ── Features ─────────────────────────────────────────────────────────── */
+    #features { padding: 100px 0; }
+    .features-intro { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .features-intro .subtext { margin: 0 auto; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(77,182,172,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .feature-card.wide {
+      grid-column: span 2;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+    @media (max-width: 560px) { .feature-card.wide { grid-column: span 1; flex-direction: column; } }
+
+    /* ── Longevity science ────────────────────────────────────────────────── */
+    #science {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+    .science-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 800px) { .science-grid { grid-template-columns: 1fr; } }
+
+    .science-points { margin-top: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .science-point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .science-point-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(77,182,172,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .science-point h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .science-point p  { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* Score visual */
+    .score-card {
+      background: var(--surface2);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .score-ring {
+      width: 160px; height: 160px;
+      margin: 0 auto 24px;
+      position: relative;
+    }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .score-sub { font-size: 0.75rem; color: var(--text-muted); }
+    .score-label { font-size: 0.85rem; color: var(--text-muted); }
+    .score-breakdown { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .score-row-label { font-size: 0.8rem; color: var(--text-muted); }
+    .score-row-bar {
+      flex: 1;
+      height: 5px;
+      background: var(--surface);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .score-row-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--teal);
+      transition: width 1.5s ease;
+      width: 0;
+    }
+    .score-row-fill.animated { /* set by JS */ }
+
+    /* ── Meditation library ───────────────────────────────────────────────── */
+    #meditation { padding: 100px 0; }
+    .meditation-intro { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+    .meditation-intro .subtext { margin: 0 auto; }
+
+    .meditation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .meditation-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .meditation-grid { grid-template-columns: 1fr; } }
+
+    .med-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: default;
+    }
+    .med-card:hover {
+      border-color: rgba(77,182,172,0.3);
+      transform: translateY(-3px);
+    }
+    .med-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .med-emoji { font-size: 28px; }
+    .med-time {
+      font-size: 11px;
+      color: var(--teal);
+      background: rgba(77,182,172,0.1);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .med-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .med-card p  { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+    .med-steps {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .med-steps li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-left: 16px;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Morning routine ──────────────────────────────────────────────────── */
+    #morning {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+    .morning-intro { max-width: 560px; margin-bottom: 56px; }
+
+    .exercises-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) { .exercises-list { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .exercises-list { grid-template-columns: 1fr; } }
+
+    .ex-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .ex-card:hover {
+      border-color: rgba(77,182,172,0.3);
+      transform: translateY(-2px);
+    }
+    .ex-num {
+      font-size: 10px;
+      color: var(--text-dim);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .ex-emoji { font-size: 26px; }
+    .ex-card h4 { font-size: 0.88rem; font-weight: 600; line-height: 1.3; }
+    .ex-card p  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.55; }
+    .ex-meta {
+      margin-top: auto;
+      font-size: 10px;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .morning-cta {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .morning-cta p { color: var(--text-muted); font-size: 0.9rem; }
+    .morning-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(77,182,172,0.1);
+      border: 1px solid rgba(77,182,172,0.2);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* ── Download CTA ─────────────────────────────────────────────────────── */
+    #download {
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #download::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(77,182,172,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #download h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+    #download p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 24px;
+      transition: all 0.2s;
+      color: var(--text);
+    }
+    .store-btn:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+    .store-btn-icon { font-size: 26px; }
+    .store-btn-text-small { font-size: 10px; color: var(--text-muted); }
+    .store-btn-text-large { font-size: 1rem; font-weight: 600; }
+
+    .waitlist-note {
+      margin-top: 40px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+    .waitlist-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .waitlist-input {
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: var(--sans);
+      width: 280px;
+      transition: border-color 0.2s;
+    }
+    .waitlist-input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    .waitlist-input::placeholder { color: var(--text-dim); }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .footer-logo span { color: var(--teal); }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="nav-logo">🌿 Life<span>Companion</span></div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#science">Longevity</a></li>
+        <li><a href="#meditation">Meditate</a></li>
+        <li><a href="#morning">Morning</a></li>
+      </ul>
+      <a href="#download" class="btn btn-primary">Download Free</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">Free to download — no subscriptions</div>
+          <h1 class="hero-h1">Live longer.<br><em>One habit at a time.</em></h1>
+          <p class="hero-sub">
+            Your daily companion for health, longevity, and inner calm.
+            Track what matters, move every morning, and watch your
+            life expectancy rise in real time.
+          </p>
+          <div class="hero-cta">
+            <a href="#download" class="btn btn-primary">↓ Get the App</a>
+            <a href="#features" class="btn btn-outline">See Features</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number counter" data-target="7">0</div>
+              <div class="stat-label">health pillars tracked</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number counter" data-target="10">0</div>
+              <div class="stat-label">min morning routine</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">∞</div>
+              <div class="stat-label">reason to start today</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone mockup -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-notch"></div>
+
+              <!-- Header -->
+              <div class="p-header">
+                <div>
+                  <div class="p-age">34</div>
+                  <div class="p-age-label">years old</div>
+                </div>
+                <div class="p-longevity">
+                  <strong>+2.4 yrs</strong>
+                  projected gain
+                </div>
+              </div>
+
+              <!-- Ribbon -->
+              <div class="p-ribbon">
+                <div class="p-ribbon-label">THIS WEEK</div>
+                <div class="p-ribbon-bars" id="phone-ribbon">
+                  <div class="p-bar" style="height:4px;background:#2A3040"></div>
+                  <div class="p-bar" style="height:5px;background:#FFB74D"></div>
+                  <div class="p-bar" style="height:6px;background:#8BC34A"></div>
+                  <div class="p-bar" style="height:7px;background:#4CAF50"></div>
+                  <div class="p-bar" style="height:8px;background:#2E7D32"></div>
+                  <div class="p-bar" style="height:9px;background:#1B5E20"></div>
+                  <div class="p-bar" style="height:10px;background:#4DB6AC;box-shadow:0 0 6px rgba(77,182,172,0.6)"></div>
+                </div>
+              </div>
+
+              <!-- Timeline -->
+              <div class="p-timeline">
+                <div class="p-tl-label">TODAY'S TIMELINE</div>
+                <div class="p-tl-track">
+                  <div class="p-tl-dot" style="left:8%;background:#7F77DD">🧘</div>
+                  <div class="p-tl-dot" style="left:22%;background:#4DB6AC">🌅</div>
+                  <div class="p-tl-dot" style="left:45%;background:#5E97F6">💊</div>
+                  <div class="p-tl-dot" style="left:62%;background:#81C784">🏃</div>
+                </div>
+              </div>
+
+              <!-- Tiles -->
+              <div class="p-tiles">
+                <div class="p-tile">💊<div class="p-tile-label">Medicine</div></div>
+                <div class="p-tile">🧘<div class="p-tile-label">Meditate</div></div>
+                <div class="p-tile">🙏<div class="p-tile-label">Prayer</div></div>
+                <div class="p-tile">🌅<div class="p-tile-label">Morning</div></div>
+                <div class="p-tile">🍽️<div class="p-tile-label">Meal</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Vitality Ribbon ─────────────────────────────────────────────────── -->
+  <section id="ribbon-section">
+    <div class="container">
+      <div class="ribbon-grid">
+        <div class="reveal">
+          <span class="label">The Vitality Ribbon</span>
+          <h2 class="headline">Your week,<br>in plain colour.</h2>
+          <p class="subtext">
+            Seven segments. Seven days. The moment you complete a habit, your
+            colour shifts — live. The brain reads it instantly: green means
+            you showed up. Grey means you didn't. Humans protect a streak
+            once it exists. That's the entire mechanism.
+          </p>
+          <div style="margin-top: 28px; display:flex; gap:18px; flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-muted);">
+              <div style="width:14px;height:14px;border-radius:3px;background:#DEDAD2;"></div> No activity
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-muted);">
+              <div style="width:14px;height:14px;border-radius:3px;background:#FFB74D;"></div> Getting started
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-muted);">
+              <div style="width:14px;height:14px;border-radius:3px;background:#4CAF50;"></div> Good day
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-muted);">
+              <div style="width:14px;height:14px;border-radius:3px;background:#1B5E20;"></div> Perfect day
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="ribbon-demo">
+            <div class="ribbon-demo-label">This week</div>
+            <div class="ribbon-bars" id="demo-ribbon">
+              <div class="ribbon-bar" data-completion="0"   data-label="Mon"></div>
+              <div class="ribbon-bar" data-completion="0.2" data-label="Tue"></div>
+              <div class="ribbon-bar" data-completion="0.6" data-label="Wed"></div>
+              <div class="ribbon-bar" data-completion="0.85" data-label="Thu"></div>
+              <div class="ribbon-bar" data-completion="1.0" data-label="Fri"></div>
+              <div class="ribbon-bar" data-completion="0.9" data-label="Sat"></div>
+              <div class="ribbon-bar" data-completion="0.45" data-label="Today" data-today="true"></div>
+            </div>
+            <div class="ribbon-days" id="demo-days"></div>
+          </div>
+
+          <div style="margin-top:20px;padding:16px 20px;background:rgba(46,125,50,0.1);border:1px solid rgba(76,175,80,0.25);border-radius:10px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:20px;">🔥</span>
+            <div>
+              <div style="font-size:0.9rem;font-weight:600;color:#4CAF50;">5 day streak</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Keep going — 2 more days for a perfect week</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────────────── -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="features-intro reveal">
+        <span class="label">Everything you need</span>
+        <h2 class="headline">One app.<br>Every pillar of health.</h2>
+        <p class="subtext">Not a gym tracker. Not a meditation app. Not a pill reminder.
+        All of it — in a single, calm interface that takes 3 minutes a day.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" style="background:rgba(77,182,172,0.12);">🌅</div>
+          <h3>Chinese Morning Routine</h3>
+          <p>7 traditional exercises, 80 seconds each, fully guided with animation. 10 minutes and you're done. Auto-advances, auto-plays, no tapping needed.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" style="background:rgba(127,119,221,0.12);">🧘</div>
+          <h3>Meditation Timer</h3>
+          <p>Multiple styles — focus, calm, sleep, body scan. Guided sessions with breathing cues and ambient sound. Starts where you left off.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" style="background:rgba(93,175,246,0.12);">💊</div>
+          <h3>Medicine Reminders</h3>
+          <p>Log medications with dosage, timing relative to meals, and get notified at exactly the right moment. Never miss a dose again.</p>
+        </div>
+
+        <div class="feature-card wide reveal reveal-delay-1">
+          <div>
+            <div class="feature-icon" style="background:rgba(76,175,80,0.12);">📈</div>
+          </div>
+          <div>
+            <h3>Live Longevity Score</h3>
+            <p>Every habit you complete today adds to your projected lifespan — right now, not at the end of the month. See exercise add minutes. See sleep protect years. The number updates as you live your day and makes the connection between small actions and long life viscerally real.</p>
+          </div>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" style="background:rgba(129,199,132,0.12);">🏃</div>
+          <h3>Workout Sessions</h3>
+          <p>Three preset intensity levels plus custom muscle-group selection. Timer-based, media-rich, with background music and GIF animations.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" style="background:rgba(255,183,77,0.12);">🍽️</div>
+          <h3>Fasting & Meals</h3>
+          <p>Track eating windows, log meals to your timeline, monitor your fasting countdown — all in the same daily view alongside everything else.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" style="background:rgba(100,181,246,0.12);">💧</div>
+          <h3>Water & Wellbeing</h3>
+          <p>Quick-tap water logging, mood tracking, and a daily quote that shifts based on your energy. Small nudges that compound.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" style="background:rgba(255,204,128,0.12);">🙏</div>
+          <h3>Prayer & Faith</h3>
+          <p>Prayer time tracking, faith traditions supported, and quiet moments marked on your day timeline — because inner life is part of longevity too.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Science ─────────────────────────────────────────────────────────── -->
+  <section id="science" class="section section--alt">
+    <div class="container">
+      <div class="science-grid">
+        <div class="reveal">
+          <span class="label">The Science</span>
+          <h2 class="headline">What actually moves<br>the needle.</h2>
+          <p class="subtext">
+            Your longevity score isn't a guess. It's weighted against
+            decades of research on what extends healthy human lifespan.
+          </p>
+          <div class="science-points">
+            <div class="science-point">
+              <div class="science-point-icon">🏃</div>
+              <div>
+                <h4>Daily movement</h4>
+                <p>Even 10 minutes of structured movement reduces all-cause mortality risk by up to 18%. Consistency matters more than intensity.</p>
+              </div>
+            </div>
+            <div class="science-point">
+              <div class="science-point-icon">🧘</div>
+              <div>
+                <h4>Meditation & stress reduction</h4>
+                <p>Chronic stress accelerates cellular ageing. Regular meditation measurably reduces cortisol and slows telomere shortening.</p>
+              </div>
+            </div>
+            <div class="science-point">
+              <div class="science-point-icon">💊</div>
+              <div>
+                <h4>Medication adherence</h4>
+                <p>50% of chronic disease patients don't take medication as prescribed. Consistent adherence alone extends life expectancy for most conditions.</p>
+              </div>
+            </div>
+            <div class="science-point">
+              <div class="science-point-icon">⏱️</div>
+              <div>
+                <h4>Intermittent fasting</h4>
+                <p>Time-restricted eating activates autophagy — the body's cellular clean-up process — and is linked to reduced inflammation and improved metabolic health.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score card -->
+        <div class="reveal reveal-delay-2">
+          <div class="score-card">
+            <div class="score-ring">
+              <svg width="160" height="160" viewBox="0 0 160 160">
+                <circle cx="80" cy="80" r="68" fill="none" stroke="#1C2330" stroke-width="12"/>
+                <circle cx="80" cy="80" r="68" fill="none" stroke="url(#scoreGrad)" stroke-width="12"
+                        stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="107"
+                        id="score-circle"/>
+                <defs>
+                  <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#4DB6AC"/>
+                    <stop offset="100%" stop-color="#2E7D32"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="score-ring-text">
+                <div class="score-num">+2.4</div>
+                <div class="score-sub">years gained</div>
+              </div>
+            </div>
+            <div class="score-label">Today's longevity bonus</div>
+            <div class="score-breakdown">
+              <div class="score-row">
+                <div class="score-row-label">🏃 Exercise</div>
+                <div class="score-row-bar"><div class="score-row-fill" data-width="85"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-label">🧘 Meditation</div>
+                <div class="score-row-bar"><div class="score-row-fill" data-width="70"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-label">💊 Medicine</div>
+                <div class="score-row-bar"><div class="score-row-fill" data-width="100"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-label">💧 Hydration</div>
+                <div class="score-row-bar"><div class="score-row-fill" data-width="60"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-label">⏱️ Fasting</div>
+                <div class="score-row-bar"><div class="score-row-fill" data-width="90"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Meditation library ──────────────────────────────────────────────── -->
+  <section id="meditation" class="section">
+    <div class="container">
+      <div class="meditation-intro reveal">
+        <span class="label">Meditation Library</span>
+        <h2 class="headline">Ancient practices.<br>Modern guidance.</h2>
+        <p class="subtext">Six evidence-based techniques, each with a guided timer, breathing cues, and ambient sound. Start with 5 minutes. Build from there.</p>
+      </div>
+
+      <div class="meditation-grid">
+
+        <div class="med-card reveal reveal-delay-1">
+          <div class="med-card-header">
+            <div class="med-emoji">📦</div>
+            <div class="med-time">5 – 20 min</div>
+          </div>
+          <h3>Box Breathing</h3>
+          <p>Inhale, hold, exhale, hold — four equal counts. Used by Navy SEALs to reset the nervous system under pressure.</p>
+          <ul class="med-steps">
+            <li>Inhale for 4 counts</li>
+            <li>Hold for 4 counts</li>
+            <li>Exhale for 4 counts</li>
+            <li>Hold for 4 counts</li>
+          </ul>
+        </div>
+
+        <div class="med-card reveal reveal-delay-2">
+          <div class="med-card-header">
+            <div class="med-emoji">🌙</div>
+            <div class="med-time">5 – 10 min</div>
+          </div>
+          <h3>4-7-8 Breathing</h3>
+          <p>Dr. Andrew Weil's technique for rapid calm. Inhale 4, hold 7, exhale 8. Activates the parasympathetic system almost immediately.</p>
+          <ul class="med-steps">
+            <li>Inhale through nose for 4</li>
+            <li>Hold breath for 7</li>
+            <li>Exhale completely for 8</li>
+            <li>Repeat 4 cycles</li>
+          </ul>
+        </div>
+
+        <div class="med-card reveal reveal-delay-3">
+          <div class="med-card-header">
+            <div class="med-emoji">🧠</div>
+            <div class="med-time">10 – 30 min</div>
+          </div>
+          <h3>Body Scan</h3>
+          <p>Systematic attention through each part of the body. Reduces chronic pain perception and improves mind-body awareness over time.</p>
+          <ul class="med-steps">
+            <li>Begin at the crown of your head</li>
+            <li>Move attention slowly downward</li>
+            <li>Notice, don't judge</li>
+            <li>Breathe into areas of tension</li>
+          </ul>
+        </div>
+
+        <div class="med-card reveal reveal-delay-1">
+          <div class="med-card-header">
+            <div class="med-emoji">❤️</div>
+            <div class="med-time">10 – 20 min</div>
+          </div>
+          <h3>Loving Kindness</h3>
+          <p>Cultivates compassion toward self and others. Research shows measurable increases in positive emotion and social connection.</p>
+          <ul class="med-steps">
+            <li>Begin with yourself</li>
+            <li>Extend to loved ones</li>
+            <li>Extend to neutral people</li>
+            <li>Extend to all beings</li>
+          </ul>
+        </div>
+
+        <div class="med-card reveal reveal-delay-2">
+          <div class="med-card-header">
+            <div class="med-emoji">⚡</div>
+            <div class="med-time">10 – 40 min</div>
+          </div>
+          <h3>Zen (Zazen)</h3>
+          <p>Seated stillness. Watch thoughts arise and pass without following them. The foundation of the oldest formal meditation tradition.</p>
+          <ul class="med-steps">
+            <li>Sit upright, eyes half-closed</li>
+            <li>Count breaths to 10, restart</li>
+            <li>When mind wanders — return</li>
+            <li>No goal except presence</li>
+          </ul>
+        </div>
+
+        <div class="med-card reveal reveal-delay-3">
+          <div class="med-card-header">
+            <div class="med-emoji">🌊</div>
+            <div class="med-time">5 – 15 min</div>
+          </div>
+          <h3>Mindful Breathing</h3>
+          <p>Simply observe the breath. The entry point for all meditation. Clinically proven to reduce anxiety and improve focus in 8 weeks.</p>
+          <ul class="med-steps">
+            <li>Find a natural breath rhythm</li>
+            <li>Notice the rise and fall</li>
+            <li>Gently return when distracted</li>
+            <li>No special technique needed</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Morning Routine ─────────────────────────────────────────────────── -->
+  <section id="morning" class="section section--alt">
+    <div class="container">
+      <div class="morning-intro reveal">
+        <span class="label">Chinese Morning Routine</span>
+        <h2 class="headline">Ancient movement.<br>Modern tracking.</h2>
+        <p class="subtext">
+          Seven traditional exercises from Chinese morning practice. 80 seconds each,
+          guided automatically with animation. No equipment, no gym. Just you, the dawn, and 10 minutes.
+        </p>
+        <div class="morning-cta">
+          <div class="morning-time-badge">⏱️ ~10 minutes total</div>
+          <p>Fully automatic · Music included · Works offline</p>
+        </div>
+      </div>
+
+      <div class="exercises-list">
+        <div class="ex-card reveal reveal-delay-1">
+          <div class="ex-num">01</div>
+          <div class="ex-emoji">🙌</div>
+          <h4>Arm Swings Up and Down</h4>
+          <p>Rhythmic arm swings overhead and down. Opens the shoulders and wakes up the cardiovascular system.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-2">
+          <div class="ex-num">02</div>
+          <div class="ex-emoji">🌀</div>
+          <h4>Cosmic Rotation</h4>
+          <p>Large circular torso rotation with extended arms. Mobilises the spine and stimulates the core.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-3">
+          <div class="ex-num">03</div>
+          <div class="ex-emoji">🦶</div>
+          <h4>Heel Lift and Arm Swing</h4>
+          <p>Rise on toes while swinging arms. Improves balance, calf strength and coordination.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-4">
+          <div class="ex-num">04</div>
+          <div class="ex-emoji">🦵</div>
+          <h4>Deep Stance Hip Sway</h4>
+          <p>Wide stance, gentle squat, slow hip sway. Opens the hips and warms the lower back.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-1">
+          <div class="ex-num">05</div>
+          <div class="ex-emoji">🦅</div>
+          <h4>Eagle Soaring Skyward</h4>
+          <p>Arms wide, rise and soar. Expands the chest and lungs, lifts the spirit to start the day.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-2">
+          <div class="ex-num">06</div>
+          <div class="ex-emoji">🤷</div>
+          <h4>Shoulder Shrug and Heel Lift</h4>
+          <p>Shrug and rise simultaneously. Releases neck tension and activates the upper trapezius.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-3">
+          <div class="ex-num">07</div>
+          <div class="ex-emoji">🌙</div>
+          <h4>Turn and Shoot the Moon</h4>
+          <p>Rotate and sweep arms skyward. A graceful finish that mobilises the full spine.</p>
+          <div class="ex-meta">40 reps · 80 sec</div>
+        </div>
+        <div class="ex-card reveal reveal-delay-4" style="background:rgba(77,182,172,0.05);border-color:rgba(77,182,172,0.2);justify-content:center;align-items:center;text-align:center;min-height:180px;">
+          <div style="font-size:36px;margin-bottom:12px;">🎉</div>
+          <h4 style="color:var(--teal);">Morning complete!</h4>
+          <p style="font-size:0.8rem;">Your vitality ribbon turns green. The day has begun right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Download ─────────────────────────────────────────────────────────── -->
+  <section id="download">
+    <div class="container">
+      <div class="reveal">
+        <span class="label">Download Free</span>
+        <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);margin-bottom:16px;">
+          Start today.<br>Feel the difference tomorrow.
+        </h2>
+        <p style="color:var(--text-muted);font-size:1.05rem;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;">
+          Free to download. No account required. No subscriptions.
+          Just open it, set your habits, and begin.
+        </p>
+      </div>
+      <div class="download-buttons reveal reveal-delay-1">
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">🍎</div>
+          <div>
+            <div class="store-btn-text-small">Download on the</div>
+            <div class="store-btn-text-large">App Store</div>
+          </div>
+        </a>
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">▶️</div>
+          <div>
+            <div class="store-btn-text-small">Get it on</div>
+            <div class="store-btn-text-large">Google Play</div>
+          </div>
+        </a>
+      </div>
+      <div class="waitlist-note reveal reveal-delay-2">
+        <p>Not launched yet in your region? Join the waitlist.</p>
+        <div class="waitlist-form">
+          <input type="email" class="waitlist-input" placeholder="your@email.com" />
+          <button class="btn btn-primary" onclick="handleWaitlist(this)">Notify me</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ───────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">🌿 Life<span>Companion</span></div>
+      <ul class="footer-links">
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="support.html">Contact</a></li>
+      </ul>
+      <div class="footer-copy">© 2025 LifeCompanion. Made with care.</div>
+    </div>
+  </footer>
+
+  <!-- ── JavaScript ───────────────────────────────────────────────────────── -->
+  <script>
+    // ── Scroll reveal ──────────────────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Counter animation ──────────────────────────────────────────────────
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      let count = 0;
+      const step = Math.ceil(target / 30);
+      const interval = setInterval(() => {
+        count = Math.min(count + step, target);
+        el.textContent = count;
+        if (count >= target) clearInterval(interval);
+      }, 40);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ── Vitality ribbon demo animation ─────────────────────────────────────
+    function completionToColor(c) {
+      if (c <= 0)    return '#2A3040';
+      if (c <= 0.30) return lerpColor('#FFCC80', '#FFB74D', c / 0.30);
+      if (c <= 0.60) return lerpColor('#FFB74D', '#8BC34A', (c - 0.30) / 0.30);
+      if (c <= 0.80) return lerpColor('#8BC34A', '#4CAF50', (c - 0.60) / 0.20);
+      return lerpColor('#4CAF50', '#1B5E20', (c - 0.80) / 0.20);
+    }
+
+    function lerpColor(a, b, t) {
+      const ah = parseInt(a.slice(1), 16);
+      const bh = parseInt(b.slice(1), 16);
+      const ar = ah >> 16, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+      const br = bh >> 16, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+      const rr = Math.round(ar + (br - ar) * t);
+      const rg = Math.round(ag + (bg - ag) * t);
+      const rb = Math.round(ab + (bb - ab) * t);
+      return `#${((1 << 24) + (rr << 16) + (rg << 8) + rb).toString(16).slice(1)}`;
+    }
+
+    function animateRibbon() {
+      const bars = document.querySelectorAll('#demo-ribbon .ribbon-bar');
+      const daysEl = document.getElementById('demo-days');
+
+      bars.forEach((bar, i) => {
+        const c = parseFloat(bar.dataset.completion);
+        const label = bar.dataset.label;
+        const isToday = bar.dataset.today === 'true';
+        const maxH = 48;
+        const minH = 8;
+        const h = c === 0 ? minH : minH + (c * (maxH - minH));
+
+        setTimeout(() => {
+          bar.style.height = h + 'px';
+          bar.style.backgroundColor = completionToColor(c);
+          if (c > 0.7) {
+            bar.style.boxShadow = `0 0 12px ${completionToColor(c)}66`;
+          }
+        }, i * 120);
+
+        // Day labels
+        const day = document.createElement('div');
+        day.className = 'ribbon-day' + (isToday ? ' today' : '');
+        day.textContent = label;
+        daysEl.appendChild(day);
+      });
+    }
+
+    const ribbonObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateRibbon();
+          ribbonObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    const ribbonSection = document.getElementById('demo-ribbon');
+    if (ribbonSection) ribbonObserver.observe(ribbonSection);
+
+    // ── Score bars animation ───────────────────────────────────────────────
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.score-row-fill').forEach((fill, i) => {
+            const w = fill.dataset.width;
+            setTimeout(() => { fill.style.width = w + '%'; }, i * 150);
+          });
+          barObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const scoreCard = document.querySelector('.score-card');
+    if (scoreCard) barObserver.observe(scoreCard);
+
+    // ── Waitlist ───────────────────────────────────────────────────────────
+    function handleWaitlist(btn) {
+      const input = btn.previousElementSibling;
+      if (!input.value || !input.value.includes('@')) {
+        input.style.borderColor = '#FF6B6B';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        return;
+      }
+      btn.textContent = '✓ You\'re on the list!';
+      btn.style.background = '#2E7D32';
+      input.disabled = true;
+      btn.disabled = true;
+    }
+
+    // ── Smooth nav shrink on scroll ────────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.padding =
+        window.scrollY > 60 ? '12px 0' : '18px 0';
+    });
+  </script>
+</body>
+</html>
