@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support — Selos (Life Companion)</title>
-  <meta name="description" content="Selos support centre. Find answers, report bugs, and get in touch." />
+  <title>Support — Selos</title>
+  <meta name="description" content="Selos Privacy Policy. We believe your health data belongs to you — and only you." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -12,149 +12,77 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0D1117; --surface: #161B22; --surface2: #1C2330;
-      --border: rgba(255,255,255,0.08); --teal: #4DB6AC; --teal-dim: rgba(77,182,172,0.12);
+      --border: rgba(255,255,255,0.08); --teal: #4DB6AC;
       --text: #F0F6FC; --text-muted: #8B949E; --text-dim: #484F58;
       --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
-      --radius: 12px;
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; }
 
+    /* Nav */
     nav {
-      padding: 18px 0; background: rgba(13,17,23,0.9);
-      backdrop-filter: blur(14px); border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: rgba(13,17,23,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
       position: sticky; top: 0; z-index: 100;
     }
-    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: var(--text); text-decoration: none; }
     .nav-logo span { color: var(--teal); }
     .nav-back { font-size: 0.88rem; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
     .nav-back:hover { color: var(--teal); }
 
-    .page { max-width: 1000px; margin: 0 auto; padding: 60px 24px 100px; }
+    /* Layout */
+    .page { max-width: 800px; margin: 0 auto; padding: 60px 24px 100px; }
 
     /* Hero */
-    .page-hero { text-align: center; margin-bottom: 64px; }
+    .page-hero { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
     .page-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
-    .page-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 14px; }
-    .page-hero p { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    .page-hero p { color: var(--text-muted); font-size: 1rem; max-width: 560px; }
+    .updated { margin-top: 20px; font-size: 0.82rem; color: var(--text-dim); background: var(--surface); display: inline-block; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); }
 
-    /* Search */
-    .search-wrap { max-width: 480px; margin: 28px auto 0; position: relative; }
-    .search-input {
-      width: 100%; padding: 14px 20px 14px 48px;
-      border-radius: 50px; border: 1.5px solid var(--border);
-      background: var(--surface); color: var(--text);
-      font-family: var(--sans); font-size: 0.95rem;
-      transition: border-color 0.2s;
-    }
-    .search-input:focus { outline: none; border-color: var(--teal); }
-    .search-input::placeholder { color: var(--text-dim); }
-    .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none; }
+    /* Content */
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 48px; }
+    .toc h3 { font-size: 0.88rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .toc ol { list-style: decimal; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .toc a { color: var(--teal); font-size: 0.9rem; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
 
-    /* Quick links */
-    .quick-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
-    .quick-link {
-      padding: 8px 18px; border-radius: 50px;
-      background: var(--surface); border: 1px solid var(--border);
-      font-size: 0.88rem; color: var(--text-muted);
-      text-decoration: none; transition: all 0.2s; cursor: pointer;
-    }
-    .quick-link:hover { border-color: var(--teal); color: var(--teal); }
+    .policy-section { margin-bottom: 52px; }
+    .policy-section h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; padding-top: 8px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .policy-section h2 .num { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; color: var(--teal); background: rgba(77,182,172,0.12); border-radius: 6px; padding: 3px 8px; }
+    .policy-section p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px; line-height: 1.75; }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul, .policy-section ol { padding-left: 22px; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+    .policy-section li { line-height: 1.65; }
+    .policy-section strong { color: var(--text); font-weight: 600; }
 
-    /* Contact cards */
-    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 64px; }
-    @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
-    .contact-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px;
-      text-align: center; transition: border-color 0.2s, transform 0.2s;
-    }
-    .contact-card:hover { border-color: rgba(77,182,172,0.35); transform: translateY(-2px); }
-    .contact-card-icon { font-size: 32px; margin-bottom: 12px; }
+    /* Highlight box */
+    .highlight-box { background: rgba(77,182,172,0.07); border: 1px solid rgba(77,182,172,0.2); border-radius: 10px; padding: 18px 22px; margin: 20px 0; }
+    .highlight-box p { color: var(--text); font-size: 0.92rem; margin: 0; }
+
+    /* Data table */
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface2); color: var(--text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+    .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:first-child { color: var(--text); font-weight: 500; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+    .badge-local { background: rgba(76,175,80,0.15); color: #81C784; }
+    .badge-external { background: rgba(255,183,77,0.15); color: #FFB74D; }
+
+    /* Contact */
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; display: flex; gap: 20px; align-items: flex-start; }
+    .contact-icon { font-size: 28px; }
     .contact-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
-    .contact-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.55; }
-    .contact-card a {
-      display: inline-block; color: var(--teal);
-      font-size: 0.88rem; font-weight: 500;
-      padding: 8px 18px; border-radius: 50px;
-      background: var(--teal-dim); border: 1px solid rgba(77,182,172,0.2);
-      text-decoration: none; transition: all 0.2s;
-    }
-    .contact-card a:hover { background: rgba(77,182,172,0.2); }
-
-    /* FAQ */
-    .faq-header { text-align: center; margin-bottom: 36px; }
-    .faq-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
-    .faq-header p { color: var(--text-muted); font-size: 0.95rem; }
-
-    .faq-categories { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px; }
-    .faq-cat {
-      padding: 6px 16px; border-radius: 50px;
-      font-size: 0.85rem; cursor: pointer;
-      border: 1px solid var(--border);
-      background: transparent; color: var(--text-muted);
-      transition: all 0.2s;
-    }
-    .faq-cat.active, .faq-cat:hover { background: var(--teal-dim); border-color: rgba(77,182,172,0.3); color: var(--teal); }
-
-    .faq-list { display: flex; flex-direction: column; gap: 10px; max-width: 760px; margin: 0 auto; }
-
-    .faq-item {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: border-color 0.2s;
-    }
-    .faq-item.open { border-color: rgba(77,182,172,0.3); }
-
-    .faq-question {
-      width: 100%; text-align: left; padding: 20px 24px;
-      background: none; border: none; color: var(--text);
-      font-family: var(--sans); font-size: 0.95rem; font-weight: 500;
-      cursor: pointer; display: flex; justify-content: space-between;
-      align-items: center; gap: 16px; line-height: 1.4;
-    }
-    .faq-question:hover { color: var(--teal); }
-    .faq-chevron { font-size: 12px; color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
-    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--teal); }
-
-    .faq-answer {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease;
-      padding: 0 24px;
-    }
-    .faq-item.open .faq-answer { max-height: 400px; padding-bottom: 20px; }
-    .faq-answer p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .faq-answer p + p { margin-top: 10px; }
-    .faq-answer a { color: var(--teal); }
-    .faq-answer strong { color: var(--text); }
-
-    /* Troubleshooting */
-    .trouble-section { margin-top: 72px; }
-    .trouble-section h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 8px; }
-    .trouble-section > p { text-align: center; color: var(--text-muted); margin-bottom: 36px; }
-
-    .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 600px) { .trouble-grid { grid-template-columns: 1fr; } }
-
-    .trouble-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
-    .trouble-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .trouble-card ol { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
-    .trouble-card li { font-size: 0.87rem; color: var(--text-muted); line-height: 1.55; }
-
-    /* Data deletion */
-    .deletion-section { margin-top: 72px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 36px; }
-    .deletion-section h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
-    .deletion-section p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 14px; }
-    .deletion-section p:last-child { margin-bottom: 0; }
-    .deletion-steps { background: var(--surface2); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
-    .deletion-steps h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .deletion-steps ol { padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
-    .deletion-steps li { font-size: 0.9rem; color: var(--text-muted); }
+    .contact-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px; }
+    .contact-card a { color: var(--teal); font-size: 0.9rem; }
 
     /* Footer */
-    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 16px; }
     .page-footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
     .page-footer-links a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; }
     .page-footer-links a:hover { color: var(--teal); }
@@ -162,315 +90,38 @@
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">🌿 Selos <span>Life Companion</span></a>
+      <a href="index.html" class="nav-logo">🌿 Selos</a>
       <a href="index.html" class="nav-back">← Back to home</a>
     </div>
   </nav>
-
   <div class="page">
-
-    <!-- Hero -->
     <div class="page-hero">
-      <div class="page-label">Help Centre</div>
-      <h1>How can we help?</h1>
-      <p>Find answers to common questions, troubleshoot issues, or get in touch directly.</p>
-      <div class="search-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" placeholder="Search FAQs…" id="faq-search" oninput="filterFAQ(this.value)" />
-      </div>
+      <div class="page-label">Help</div>
+      <h1>Support</h1>
+      <p>Questions, problems or ideas about Selos? We read every message.</p>
     </div>
 
-    <!-- Quick links -->
-    <div class="quick-links">
-      <a class="quick-link" onclick="scrollToSection('faq')">📋 FAQs</a>
-      <a class="quick-link" onclick="scrollToSection('trouble')">🔧 Troubleshooting</a>
-      <a class="quick-link" onclick="scrollToSection('deletion')">🗑️ Delete my data</a>
-      <a class="quick-link" href="mailto:support@selos.chat">✉️ Email support</a>
-    </div>
-
-    <!-- Contact options -->
-    <div class="contact-grid">
+    <div class="policy-section">
+      <h2><span class="num">01</span> Contact us</h2>
       <div class="contact-card">
-        <div class="contact-card-icon">✉️</div>
-        <h3>Email Support</h3>
-        <p>For account questions, bug reports, and anything that needs a human response.</p>
-        <a href="mailto:support@selos.chat">support@selos.chat</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-icon">🐛</div>
-        <h3>Report a Bug</h3>
-        <p>Found something broken? Tell us exactly what happened and we'll fix it fast.</p>
-        <a href="mailto:bugs@selos.chat">bugs@selos.chat</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-icon">💡</div>
-        <h3>Feature Request</h3>
-        <p>Have an idea that would make the app better? We genuinely read every one.</p>
-        <a href="mailto:ideas@selos.chat">ideas@selos.chat</a>
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h3>Email</h3>
+          <p>We aim to reply within 2 business days.</p>
+          <a href="mailto:support@miclab.app">support@miclab.app</a>
+        </div>
       </div>
     </div>
 
-    <!-- FAQ Section -->
-    <div id="faq">
-      <div class="faq-header">
-        <h2>Frequently Asked Questions</h2>
-        <p>The most common questions answered.</p>
-      </div>
-
-      <div class="faq-categories">
-        <button class="faq-cat active" onclick="filterCat('all', this)">All</button>
-        <button class="faq-cat" onclick="filterCat('general', this)">General</button>
-        <button class="faq-cat" onclick="filterCat('habits', this)">Habits & Tracking</button>
-        <button class="faq-cat" onclick="filterCat('health', this)">Health Features</button>
-        <button class="faq-cat" onclick="filterCat('privacy', this)">Privacy & Data</button>
-      </div>
-
-      <div class="faq-list" id="faq-list">
-
-        <!-- General -->
-        <div class="faq-item" data-cat="general">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Is LifeCompanion free? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>Yes — LifeCompanion is completely free to download and use. All core features including habit tracking, the morning routine, meditation timer, medicine reminders, and the vitality ribbon are free with no time limits.</p>
-            <p>We may introduce optional premium features in the future, but the core app will always remain free.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="general">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Do I need to create an account? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>No account required. Open the app, complete a short onboarding, and you're ready. There's no sign-up, no email, no password.</p>
-            <p>All your data lives on your device. The trade-off is that if you switch devices, your history doesn't transfer automatically — we plan to add cloud backup in a future update.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="general">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Is the app available on both iOS and Android? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>Yes. LifeCompanion is built with Flutter and is available on both the Apple App Store (iOS 14+) and Google Play (Android 8.0+).</p>
-          </div>
-        </div>
-
-        <!-- Habits & Tracking -->
-        <div class="faq-item" data-cat="habits">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            What is the Vitality Ribbon? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>The Vitality Ribbon is a 7-day colour strip on your home screen that shows your habit completion at a glance. Each segment represents one day — the colour tells you how much you completed:</p>
-            <p><strong>Grey</strong> = no activity · <strong>Amber</strong> = getting started · <strong>Green</strong> = good day · <strong>Deep green</strong> = excellent day</p>
-            <p>The ribbon updates live as you complete habits. A 🔥 streak badge appears when you have 3 or more strong days in a row.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="habits">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            How do I add custom habits? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>Tap the <strong>+ tile</strong> at the end of the quick-action row on the home screen. You can set a name, icon, colour, type (counter, checklist, timer, or numeric), and daily goal. Custom habits appear alongside the built-in ones.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="habits">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Can I edit or delete a logged entry? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>Yes. Tap any dot on the day timeline to open the activity popup, then use the delete option. For habit logs, go to the Reports or Log detail screen where individual entries can be removed.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="habits">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Why does my streak reset even though I was active? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>The streak badge on the vitality ribbon requires completion above 50% of your active habits for each consecutive day. If you had a day with low activity (below that threshold), the streak will restart from the next active day.</p>
-            <p>Individual habit streaks (shown on habit detail cards) are calculated separately and only require at least one log per day for that specific habit.</p>
-          </div>
-        </div>
-
-        <!-- Health features -->
-        <div class="faq-item" data-cat="health">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            What is the Longevity Score and how is it calculated? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>The Longevity Score is a <strong>projected bonus in years</strong> added to your baseline life expectancy based on the healthy habits you complete today. It is not a medical prediction — it is a motivational estimate based on well-established research into lifestyle and longevity.</p>
-            <p>Each habit carries a weighted contribution: exercise, meditation, medicine adherence, hydration, and fasting each add a different amount. Missing key habits can apply small deductions. The score updates live throughout your day as you log activity.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="health">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            How does the Chinese Morning Routine work? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>Tapping the Morning tile launches a fully guided session with 7 traditional exercises, each running for 80 seconds. The session advances automatically — you don't need to tap anything. A 10-second rest screen appears between exercises.</p>
-            <p>Background music plays automatically. You can pause the session at any time or stop it early. The session is approximately 10 minutes total. If you have GIF files for the exercises in the correct asset folder, they will display during each exercise.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="health">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            My medicine reminder didn't fire. What happened? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>A few things can prevent notifications from arriving:</p>
-            <p><strong>1.</strong> Notification permission may have been denied — check Settings → LifeCompanion → Notifications and ensure they are enabled.</p>
-            <p><strong>2.</strong> Do Not Disturb or Focus mode may have silenced the notification.</p>
-            <p><strong>3.</strong> On Android, battery optimisation can kill background processes — go to Settings → Battery → LifeCompanion and disable optimisation.</p>
-            <p><strong>Important:</strong> Never rely solely on app notifications for critical medications. Always maintain an independent system for managing important medicines.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="health">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            How does fasting tracking work? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>Tap the Fasting tile to start a fast. A countdown timer begins and a timeline event is created. When you end your fast (by tapping the tile again), the duration is logged. You can set fasting targets (16:8, 18:6, 24h, or custom) in the fasting tile settings.</p>
-          </div>
-        </div>
-
-        <!-- Privacy -->
-        <div class="faq-item" data-cat="privacy">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Is my health data sent to the internet? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>No. All health data — habits, logs, medication schedules, meditation sessions, longevity scores — is stored exclusively in a local database on your device. It is never uploaded to any server.</p>
-            <p>The only external calls the app makes are to a weather API (to show local conditions on your timeline), which sends only your approximate location — no personal health data is ever attached to this call.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="privacy">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Does LifeCompanion show ads? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>No. LifeCompanion contains no advertisements and no ad tracking SDKs. We chose to keep the app ad-free because we believe health data and advertising don't belong together.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="privacy">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            What happens to my data if I uninstall the app? <span class="faq-chevron">▼</span>
-          </button>
-          <div class="faq-answer">
-            <p>All locally stored data is permanently deleted from your device when you uninstall the app. We hold no copies of your data on any server, so there is nothing for us to delete on our end.</p>
-            <p>If your device has iCloud or Google backup enabled, a backup copy may exist in your cloud storage — you can delete this manually from your device's backup settings.</p>
-          </div>
-        </div>
-
-      </div><!-- /faq-list -->
-    </div>
-
-    <!-- Troubleshooting -->
-    <div class="trouble-section" id="trouble">
-      <h2>Troubleshooting</h2>
-      <p>Step-by-step fixes for the most common issues.</p>
-      <div class="trouble-grid">
-
-        <div class="trouble-card">
-          <h3>🔔 Notifications not working</h3>
-          <ol>
-            <li>Open device Settings → Apps → LifeCompanion</li>
-            <li>Tap Notifications and enable "Allow notifications"</li>
-            <li>On Android: go to Battery → disable battery optimisation for the app</li>
-            <li>Ensure Do Not Disturb is not blocking the app</li>
-            <li>Re-add the medicine entry inside the app to reschedule the notification</li>
-          </ol>
-        </div>
-
-        <div class="trouble-card">
-          <h3>🌤️ Weather not showing</h3>
-          <ol>
-            <li>Check that location permission is granted: Settings → LifeCompanion → Location → "While Using"</li>
-            <li>Ensure you have an active internet connection</li>
-            <li>Pull down to refresh the home screen</li>
-            <li>If the issue persists, disable and re-enable weather in the app settings</li>
-          </ol>
-        </div>
-
-        <div class="trouble-card">
-          <h3>📉 Longevity score not updating</h3>
-          <ol>
-            <li>Ensure habits are being logged via the correct tiles (not just viewed)</li>
-            <li>The score updates within a few seconds of each log — wait a moment</li>
-            <li>Force-close the app and reopen it</li>
-            <li>Check that your date of birth is entered correctly in your profile</li>
-          </ol>
-        </div>
-
-        <div class="trouble-card">
-          <h3>🎵 No sound in exercise session</h3>
-          <ol>
-            <li>Check your device's volume is not muted (including media volume separately)</li>
-            <li>Ensure the music toggle in the session's top-right corner is enabled</li>
-            <li>Check that the audio file <code>exercise_music.mp3</code> is present in the app's asset bundle — it may not be included in all builds</li>
-            <li>Restart the session</li>
-          </ol>
-        </div>
-
-        <div class="trouble-card">
-          <h3>🌅 Morning routine not advancing</h3>
-          <ol>
-            <li>Ensure the app is in the foreground — background timers may be throttled by the OS</li>
-            <li>Check that battery optimisation is not killing the app mid-session</li>
-            <li>If the timer appears frozen, tap Pause then Resume to reset the tick</li>
-            <li>Force-close and reopen the session</li>
-          </ol>
-        </div>
-
-        <div class="trouble-card">
-          <h3>📱 App crashing on launch</h3>
-          <ol>
-            <li>Force-close the app and reopen it</li>
-            <li>Ensure your OS is up to date (iOS 14+ / Android 8.0+ required)</li>
-            <li>Uninstall and reinstall the app (note: this will delete all local data)</li>
-            <li>If the problem persists, email us with your device model and OS version</li>
-          </ol>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Data Deletion (required by Google Play) -->
-    <div class="deletion-section" id="deletion">
-      <h2>🗑️ Deleting your data</h2>
-      <p>Because LifeCompanion stores all data locally on your device and requires no account, you are always in full control of your data. There is nothing stored on our servers to delete.</p>
-
-      <div class="deletion-steps">
-        <h4>To delete all data immediately</h4>
-        <ol>
-          <li>Uninstall LifeCompanion from your device.</li>
-          <li>All habits, logs, health records, and settings are permanently deleted from your device.</li>
-          <li>If you use iCloud or Google backup, also remove the app's backup data from your cloud storage settings.</li>
-        </ol>
-      </div>
-
-      <div class="deletion-steps">
-        <h4>To delete specific entries without uninstalling</h4>
-        <ol>
-          <li>For timeline events: tap the dot on the timeline, then tap the delete icon in the popup.</li>
-          <li>For habit logs: navigate to Reports → select the habit → delete individual entries.</li>
-          <li>For custom habits: go to the habit settings and tap "Delete habit" to remove it and all its history.</li>
-          <li>For your profile: go to Profile settings and use "Reset profile" to clear personal details.</li>
-        </ol>
-      </div>
-
-      <p>If you have any concerns about your data or require assistance with deletion, contact us at <a href="mailto:privacy@selos.chat" style="color:var(--teal);">privacy@selos.chat</a> and we will respond within 5 business days.</p>
+    <div class="policy-section">
+      <h2><span class="num">02</span> Common questions</h2>
+      <p><strong>Is Selos free?</strong><br>Yes. All guided meditations, the meditation timer, fasting, medicine reminders and the daily workout are free. Selos Pro is an optional subscription that unlocks the training programs (Autogenic Training, Autogenic Training II and the wave program).</p>
+      <p><strong>How do I cancel Selos Pro?</strong><br>On iPhone: Settings → your name → Subscriptions → Selos. On Android: Google Play → Profile → Payments &amp; subscriptions → Subscriptions → Selos. Cancel at least 24 hours before the renewal date.</p>
+      <p><strong>How do I restore my purchase on a new phone?</strong><br>Open the Pro screen in Selos and tap "Restore purchases", signed in with the same Apple ID or Google account you subscribed with.</p>
+      <p><strong>I'm not getting reminders.</strong><br>Reminders are off until you switch them on in the Ritual tab. Also check that notifications for Selos are allowed in your phone's settings. On Android, turning off battery optimisation for Selos helps reminders arrive on time.</p>
+      <p><strong>Where is my data stored?</strong><br>Only on your phone. Selos has no accounts and no servers holding your data. Uninstalling the app deletes it. See our <a href="privacy.html" style="color:var(--teal)">Privacy Policy</a>.</p>
     </div>
 
     <div class="page-footer">
@@ -479,44 +130,8 @@
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms of Service</a>
       </div>
-      <div class="page-footer-copy">© 2025 Selos</div>
+      <div class="page-footer-copy">© 2026 Selos</div>
     </div>
-
-  </div><!-- /page -->
-
-  <script>
-    // FAQ accordion
-    function toggleFAQ(btn) {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    }
-
-    // Category filter
-    function filterCat(cat, btn) {
-      document.querySelectorAll('.faq-cat').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.style.display =
-          cat === 'all' || item.dataset.cat === cat ? '' : 'none';
-      });
-    }
-
-    // Search filter
-    function filterFAQ(query) {
-      const q = query.toLowerCase().trim();
-      document.querySelectorAll('.faq-item').forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = !q || text.includes(q) ? '' : 'none';
-      });
-    }
-
-    // Scroll helpers
-    function scrollToSection(id) {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  </script>
-
+  </div>
 </body>
 </html>
